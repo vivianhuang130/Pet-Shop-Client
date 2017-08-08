@@ -18,20 +18,43 @@ class Product extends React.Component {
     })
   }
 
+// render(){
+//   return(
+//     <h1>
+//       Products viVIAN
+//       {this.state.products.map((p) => (
+//         <li key={p.products}>
+//           <img src={p.logoUrl} height="10%" width ="10%" />
+//           {p.name}
+//         </li>
+//       ))
+//     }
+//
+//     </h1>
+//     )
+//   }
+// }
+// export default Product
+
 render(){
   return(
-    <h1>
-      Products viVIAN
-      {this.state.products.map((p) => (
-        <li>
-          <img src={p.logoUrl} height="10%" width ="10%" />
-          {p.name}
-        </li>
-      ))
-    }
+    <div className="container text-center">
+      <h1>Products viVIAN</h1>
+      <div className="row">
+        <div className="col-sm-3">
+          {this.state.products.map((p) => (
+            <li id='products' key={p._id}>
+              <img className='listPic' src={p.logoUrl} height="10%" width ="10%" />
+                  <p>{p.name},  ${p.price}</p>
 
-    </h1>
-  )
-}
+
+
+            </li>
+          ))}
+        </div>
+        </div>
+        </div>
+    )
+  }
 }
 export default Product

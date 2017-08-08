@@ -37,7 +37,7 @@ class App extends Component {
 
         <div className="App">
           {currentUser
-            ? <p>Current User: {currentUser.name}</p>
+            ? <p>Hello, {currentUser.name}</p>
             : null
           }
           <NavBar currentUser={this.state.currentUser} />
