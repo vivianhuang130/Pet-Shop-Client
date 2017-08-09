@@ -6,7 +6,8 @@ class Home  extends React.Component{
   constructor(props){
     super(props)
     this.state = {products: []}
-    this.request = axios.create({baseURL: 'https://evening-springs-26292.herokuapp.com/api'})//this until here represents defaults
+    this.request = axios.create({baseURL: 'http://localhost:3001/api'})//this until here represents defaults
+//'https://evening-springs-26292.herokuapp.com/api'
   }
 
 componentDidMount(){
@@ -29,10 +30,17 @@ componentDidMount(){
           <div className="col-sm-3">
             {this.state.products.map((p) => (
               <li id='products' key={p._id}>
+
+
+
                 <img src={p.logoUrl} height="10%" width ="10%" />
 
-                {p.name}
-                ${p.price}
+                {/* <button onclick="activateLasers()"></button> */}
+
+                <p>{p.name}</p>
+                <p>${p.price}</p>
+                {/* <p>{p.description}</p> */}
+
 
               </li>
             ))}

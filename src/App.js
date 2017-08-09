@@ -6,7 +6,7 @@ import logo from './logo.svg';
 
 import NavBar from './components/NavBar'
 import Home from './components/Home'
-import Private from './components/Private'
+import Account from './components/Account'
 import SignUp from './components/SignUp'
 import LogIn from './components/LogIn'
 import LogOut from './components/LogOut'
@@ -16,6 +16,8 @@ import Product from './components/Product'
 class App extends Component {
 
   state = {
+    cart : [],
+    itemsOnCart : false,
     currentUser: auth.getCurrentUser()
   }
 
@@ -28,6 +30,13 @@ class App extends Component {
   logOut() {
     auth.clearToken()
     this.setState({currentUser: null})
+  }
+  handleAdd(p){
+    this.setState({
+      cart: [p],
+      itemsOnCart: true
+  })
+    console.log(p);
   }
 
   render() {
@@ -43,11 +52,17 @@ class App extends Component {
           <NavBar currentUser={this.state.currentUser} />
           <Route exact path='/' component={Home} />
 
-          <Route path='/product' component={Product} />
+          <Route path='/product' render={() => (
+            <Product addProduct={this.handleAdd.bind(this)}
+              cart={this.state.cart}
+            />
 
-          <Route path='/private' render={() => (
+
+          )} />
+
+          <Route path='/account' render={() => (
             currentUser
-            ? <Private />
+            ? <Account />
             : <Redirect to='/login' />
           )} />
 

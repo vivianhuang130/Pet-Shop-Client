@@ -4,9 +4,9 @@ import {NavLink} from 'react-router-dom'
 const NavBar = (props) => {
 return(
   <ul className="NavBar">
-    <li className="Product"><NavLink to='/product'>Product</NavLink></li>
-    <li className="Home"><NavLink exact to='/'>Home</NavLink></li>
-    <li className="Private"><NavLink to='/private'>Private</NavLink></li>
+    <li className="Product"><NavLink to='/product'>Home</NavLink></li>
+    {/* <li className="Home"><NavLink exact to='/'>Home</NavLink></li> */}
+    <li className="Account"><NavLink to='/account'>My Account</NavLink></li>
     {props.currentUser
       ? (
         <p>

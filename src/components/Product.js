@@ -8,8 +8,9 @@ class Product extends React.Component {
       products: []
     }
   }
+
   componentDidMount() {
-    auth.getProducts().then((prod)=>{
+    auth.getProducts().then((prod)=> {
       console.log("?");
 
       console.log(prod.data);
@@ -38,22 +39,43 @@ class Product extends React.Component {
 
 render(){
   return(
-    <div className="container text-center">
+
+    <div className="container">
       <h1>Products viVIAN</h1>
-      <div className="row">
-        <div className="col-sm-3">
+        <div id="cart">
+          {this.props.cart.length > 0 ?
+             <ProductDetails inCart={true} product={this.props.cart[0]} /> : null}
+
+        </div>
           {this.state.products.map((p) => (
             <li id='products' key={p._id}>
-              <img className='listPic' src={p.logoUrl} height="10%" width ="10%" />
-                  <p>{p.name},  ${p.price}</p>
-
-
-
+                <ProductDetails addProduct={this.props.addProduct} product={p} />
             </li>
-          ))}
+
+            ))
+          }
         </div>
-        </div>
-        </div>
+    )
+  }
+}
+
+class ProductDetails extends React.Component {
+  constructor(props){
+    super(props)
+  }
+  handleClick(){
+    this.props.addProduct(this.props.product)
+  }
+  render(){
+    return (
+      <div>
+        <div id="img">
+        <img className='listPic' src={this.props.product.logoUrl} height="10%" width ="10%" />
+      </div>
+      <p>{this.props.product.name},  ${this.props.product.price}</p>
+      {this.props.inCart ? null : <button onClick={this.handleClick.bind(this)}>Add</button>
+}
+      </div>
     )
   }
 }
