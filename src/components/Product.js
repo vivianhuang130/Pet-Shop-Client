@@ -43,9 +43,11 @@ render(){
     <div className="container">
       <h1>Products viVIAN</h1>
         <div id="cart">
-          {this.props.cart.length > 0 ?
-             <ProductDetails inCart={true} product={this.props.cart[0]} /> : null}
-
+          {this.props.cart.map((product, index) => (
+            <ProductDetails key={index} inCart={true} product={product} />
+          ))}
+          <div>Total: {this.props.cart[0] ? this.props.cart.map((item)=> {return item.price}).reduce(function(sum, value){return sum + value}) : 0}</div>
+          {/* <div>Checkout: </div> */}
         </div>
           {this.state.products.map((p) => (
             <li id='products' key={p._id}>

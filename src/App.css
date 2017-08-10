@@ -53,3 +53,7 @@ p {
   height: 140px;
   margin-left: 630px;
 }
+
+.Product {
+  display: inline-block;
+}

@@ -15,12 +15,23 @@ import Product from './components/Product'
 
 class App extends Component {
 
+
+
   state = {
-    cart : [],
+    cart : JSON.parse(localStorage.getItem("cart"))||[],
     itemsOnCart : false,
     currentUser: auth.getCurrentUser()
   }
-
+  
+  // componentDidMount() {
+  //   console.log(localStorage.getItem("cart"))
+  //   var myCart = JSON.parse(localStorage.getItem("cart"))
+  //   if(myCart){
+  //     this.setState({
+  //       cart : myCart
+  //     })
+  //   }
+  // }
   setCurrentUser() {
     this.setState({
       currentUser: auth.getCurrentUser()
@@ -32,10 +43,17 @@ class App extends Component {
     this.setState({currentUser: null})
   }
   handleAdd(p){
+    // before setting the state
+    // send a patch request to '/users/:id/cart/:productId'
+    // in the .then() for the request, you can update the state like below:
     this.setState({
-      cart: [p],
+      cart: [
+        ...this.state.cart,
+        p
+      ],
       itemsOnCart: true
-  })
+  }, ()=>{localStorage.setItem("cart", JSON.stringify(this.state.cart))})
+
     console.log(p);
   }
 
