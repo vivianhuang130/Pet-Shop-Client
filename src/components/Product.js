@@ -23,7 +23,7 @@ render(){
   return(
 
     <div className="container">
-      <h1>Products viVIAN</h1>
+      <h1>Available Hairstyles </h1>
         <div id="cart">
           {this.props.cart.map((product, index) => (
             // <ProductDetails key={index} inCart={true} product={product} />
@@ -62,7 +62,8 @@ class ProductDetails extends React.Component {
         <div id="img">
         <img className='listPic' src={this.props.product.logoUrl} height="10%" width ="10%" />
       </div>
-      <p>{this.props.product.name},  ${this.props.product.price} </p>
+      <p>{this.props.product.name} </p> <br/>
+      <p>${this.props.product.price} </p>
       {this.props.inCart ? null : <button onClick={this.handleClick.bind(this)}>Add</button>
 }
 

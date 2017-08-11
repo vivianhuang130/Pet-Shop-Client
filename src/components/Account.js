@@ -64,9 +64,9 @@ handleDeleteSubmit(id, evt){
           {console.log(this.props.currentUser)}
       </div>
           <form onSubmit={this.handleEditSubmit.bind(this, this.props.currentUser._id)}>
-            Update name: <input ref='name' type="text" defaultValue={this.props.currentUser.name} />
+            Update name: <input className="form" ref='name' type="text" defaultValue={this.props.currentUser.name} />
             <br />
-            Update email: <input ref='email' type="text" defaultValue={this.props.currentUser.email} />
+            Update email: <input className="form" ref='email' type="text" defaultValue={this.props.currentUser.email} />
             <button>Update</button>
         </form>
         <button onClick ={this.handleDeleteSubmit.bind(this, this.props.currentUser._id)}>Delete Account</button>
@@ -74,13 +74,13 @@ handleDeleteSubmit(id, evt){
             <h1>Order History🙋🏻</h1>
             {this.state.orders.map((o) => (
               <ul id='order' key={o._id}>
-                createdAt: {o.createdAt}
-                quantity :   {o.products.length}
+                Created At: {o.createdAt} <br/>
+                Quantity:   {o.products.length}
                 {o.products.map((p)=>
                 (
                   <li>
-                    <p>name: {p.name} </p>
-                    <p>price: ${p.price}</p>
+                    <p>Name: {p.name} </p> <br/>
+                    <p>Price: ${p.price}</p>
                   </li>
                 ))}
               </ul>
