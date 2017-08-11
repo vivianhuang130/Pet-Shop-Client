@@ -41,10 +41,16 @@ handleEditSubmit(id,evt){
   auth.editUser(formData,id).then((err)=>{
     this.props.parent.setCurrentUser()
   })
-
-
 }
-
+handleDeleteSubmit(id, evt){
+  evt.preventDefault()
+  console.log('deleting account')
+  auth.deleteUser(id)
+  .then((err) => {
+    this.props.parent.setCurrentUser()
+    this.setState({shouldRedirect: true})
+  })
+}
 
   render(){
     return (
@@ -63,6 +69,7 @@ handleEditSubmit(id,evt){
             Update email: <input ref='email' type="text" defaultValue={this.props.currentUser.email} />
             <button>Update</button>
         </form>
+        <button onClick ={this.handleDeleteSubmit.bind(this, this.props.currentUser._id)}>Delete Account</button>
         <div className="OrderHistory">
             <h1>Order History🙋🏻</h1>
             {this.state.orders.map((o) => (

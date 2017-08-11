@@ -34,6 +34,14 @@ editUser(accountEdit,id) {
     return this.request({method: 'POST', url: '/users', data: userInfo})
       .then((response) => response.data.success)
   }
+  deleteUser(id){
+    return this.request({method: 'DELETE', url: `/users/${id}`})
+    .then((response) => {
+      if(response.data.success) {
+        this.clearToken()
+      }
+    })
+  }
   logIn(credentials){ //email and password -info need to log in
     return this.request({method: 'POST', url: '/authenticate', data: credentials})
       .then(response => {
