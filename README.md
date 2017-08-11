@@ -3,7 +3,7 @@ The Pet Shop is an online shop where you can pre-order blowout hairstyles for yo
 #Development process
 
 ####Wireframe: 
-<img src="/Users/vivianhuang/Desktop/Screen Shot 2017-08-11 at 8.50.52 AM.png">
+<img src="http://i.imgur.com/N5heyaz.png">
 
 ##Installation instructions 
 Terminal-
@@ -28,5 +28,5 @@ Terminal-
 
 ##The following programming languages were used:
 
-HTML, CSS, JavaScript, React, Node.js, Mongoose, Express
+HTML, CSS, JavaScript, React, Node.js, Mongoose, Express, Milligram
 
