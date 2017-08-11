@@ -22,19 +22,19 @@ class App extends Component {
     itemsOnCart : false,
     currentUser: auth.getCurrentUser()
   }
-  
-  // componentDidMount() {
-  //   console.log(localStorage.getItem("cart"))
-  //   var myCart = JSON.parse(localStorage.getItem("cart"))
-  //   if(myCart){
-  //     this.setState({
-  //       cart : myCart
-  //     })
-  //   }
-  // }
+
   setCurrentUser() {
     this.setState({
       currentUser: auth.getCurrentUser()
+    })
+  }
+
+  placeOrder(){
+    console.log("placing Order...");
+    const cart = JSON.parse(localStorage.getItem('cart'))
+    auth.sendOrder(cart).then(response => {
+      localStorage.removeItem('cart')
+      this.setState({cart:[]})
     })
   }
 
@@ -57,6 +57,19 @@ class App extends Component {
     console.log(p);
   }
 
+    ///new
+  // handleClear(p){
+  //   this.setState({
+  //     cart: [
+  //       ...this.state.cart,
+  //       p
+  //     ],
+  //     itemsOnCart: true
+  // }, ()=>{localStorage.removeItem("cart", JSON.stringify(this.state.cart))})
+  //
+  //   console.log(p);
+  // }
+
   render() {
     const currentUser = this.state.currentUser
     return (
@@ -72,15 +85,19 @@ class App extends Component {
 
           <Route path='/product' render={() => (
             <Product addProduct={this.handleAdd.bind(this)}
-              cart={this.state.cart}
+              cart={this.state.cart} placeOrder={this.placeOrder.bind(this)}
             />
 
+  ///new
+            // <Product clearProduct={this.handleClearClick.bind(this)}
+            //   cart={this.state.cart}
+            // />
 
           )} />
 
           <Route path='/account' render={() => (
-            currentUser
-            ? <Account />
+            !!this.state.currentUser
+            ? <Account currentUser={this.state.currentUser} parent={this}/>
             : <Redirect to='/login' />
           )} />
 

@@ -1,64 +1,67 @@
 import React from 'react'
+import {NavLink} from 'react-router-dom'
+import auth from '../auth'
+
+class Account extends React.Component{
+  constructor(props){
+    super(props)
+    this.state = {products: []}
+  }
+
+componentDidMount(){
+  // this.request({method: 'GET', url: '/products'})
+  // .then((prod)=>{
+  //   console.log("?");
+  //
+  //   console.log(prod.data);
+  //   this.setState({products: prod.data})
+  //   console.log(this.state);
+  // })
 
 
-const Account = (props) => {
-  return(
-    <h1>My Account🙋🏻</h1>
-  )
+  // auth.getUserOrders().then(response => {
+  // // console.log(response)
+  // // set the state to contain the orders you get back from server.
+  // })
 }
+
+handleEditSubmit(id,evt){
+  evt.preventDefault()
+  const formData = {
+    name: this.refs.name.value,
+    email: this.refs.email.value
+  }
+  console.log("CREATING ACCOUNT...");
+  console.log(formData);
+  auth.editUser(formData,id).then((err)=>{
+    this.props.parent.setCurrentUser()
+  })
+
+
+}
+
+
+  render(){
+    return (
+      <div>
+      <div className="User-Info">
+          <h1>Edit User Info🙋🏻</h1>
+          <h2>{this.props.currentUser.name}</h2>
+          <h2>{this.props.currentUser.email}</h2>
+          <h2>{this.props.currentUser.password}</h2>
+          {console.log(this.props.currentUser)}
+      </div>
+          <form onSubmit={this.handleEditSubmit.bind(this, this.props.currentUser._id)}>
+            <input ref='name' type="text" defaultValue={this.props.currentUser.name} />
+            <input ref='email' type="text" defaultValue={this.props.currentUser.email} />
+            <button>Update</button>
+        </form>
+        <div className="OrderHistory">
+            <h1>Order History🙋🏻</h1>
+        </div>
+      </div>
+      )
+  }
+}
+
 export default Account
-
-
-// 
-// import React from 'react'
-// import {NavLink} from 'react-router-dom'
-// import axios from 'axios'
-//
-// class Account  extends React.Component{
-//   constructor(props){
-//     super(props)
-//     this.state = {accounts: []}
-//     this.request = axios.create({baseURL: 'http://localhost:3001/api'})//this until here represents defaults
-// //'https://evening-springs-26292.herokuapp.com/api'
-//   }
-//
-// componentDidMount(){
-//   this.request({method: 'GET', url: '/accounts'})
-//   .then((order)=>{
-//     console.log("?");
-//
-//     console.log(order.data);
-//     this.setState({accounts: order.data})
-//     console.log(this.state);
-//   })
-// }
-//
-//   render(){
-//     return (
-//
-//       <div className="container text-center">
-//         <h1>Products viVIAN</h1>
-//         <div className="row">
-//           <div className="col-sm-3">
-//             {this.state.accounts.map((o) => (
-//               <li id='accounts' key={o._id}>
-//
-//
-//
-//                 <img src={o.logoUrl} height="10%" width ="10%" />
-//
-//                 <p>${o.count}</p>
-//                 {/* <p>{p.description}</p> */}
-//
-//
-//               </li>
-//             ))}
-//           </div>
-//           </div>
-//           </div>
-//
-//     )
-//   }
-// }
-//
-// export default Account

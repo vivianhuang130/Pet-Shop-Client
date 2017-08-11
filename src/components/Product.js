@@ -19,24 +19,6 @@ class Product extends React.Component {
     })
   }
 
-// render(){
-//   return(
-//     <h1>
-//       Products viVIAN
-//       {this.state.products.map((p) => (
-//         <li key={p.products}>
-//           <img src={p.logoUrl} height="10%" width ="10%" />
-//           {p.name}
-//         </li>
-//       ))
-//     }
-//
-//     </h1>
-//     )
-//   }
-// }
-// export default Product
-
 render(){
   return(
 
@@ -46,8 +28,9 @@ render(){
           {this.props.cart.map((product, index) => (
             <ProductDetails key={index} inCart={true} product={product} />
           ))}
-          <div>Total: {this.props.cart[0] ? this.props.cart.map((item)=> {return item.price}).reduce(function(sum, value){return sum + value}) : 0}</div>
-          {/* <div>Checkout: </div> */}
+          <div>Total: ${this.props.cart[0] ? this.props.cart.map((item)=> {return item.price}).reduce(function(sum, value){return sum + value}) : 0}</div>
+{/*new  */}
+      <div><button onClick={this.props.placeOrder}> Checkout</button></div>
         </div>
           {this.state.products.map((p) => (
             <li id='products' key={p._id}>
@@ -68,6 +51,10 @@ class ProductDetails extends React.Component {
   handleClick(){
     this.props.addProduct(this.props.product)
   }
+// new
+  // handleClickClear(){
+  //   this.props.clearProduct(this.props.product)
+  // }
   render(){
     return (
       <div>
@@ -77,7 +64,10 @@ class ProductDetails extends React.Component {
       <p>{this.props.product.name},  ${this.props.product.price}</p>
       {this.props.inCart ? null : <button onClick={this.handleClick.bind(this)}>Add</button>
 }
-      </div>
+
+{/* new */}
+      {/* <div><button onClick={this.handleClearClick.bind(this)}>Checkout </button></div> */}
+</div>
     )
   }
 }
