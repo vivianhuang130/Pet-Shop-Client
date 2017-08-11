@@ -32,7 +32,8 @@ class App extends Component {
   placeOrder(){
     console.log("placing Order...");
     const cart = JSON.parse(localStorage.getItem('cart'))
-    auth.sendOrder(cart).then(response => {
+    console.log(cart)
+    auth.sendOrder({cart: cart}).then(response => {
       localStorage.removeItem('cart')
       this.setState({cart:[]})
     })

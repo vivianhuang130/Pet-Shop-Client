@@ -5,10 +5,15 @@ import auth from '../auth'
 class Account extends React.Component{
   constructor(props){
     super(props)
-    this.state = {products: []}
+    this.state = {products: [], orders: []}
   }
 
 componentDidMount(){
+  auth.getOrders()
+    .then((orders)=>{
+      console.log(orders)
+      this.setState({orders: orders.data})
+    })
   // this.request({method: 'GET', url: '/products'})
   // .then((prod)=>{
   //   console.log("?");
@@ -46,18 +51,35 @@ handleEditSubmit(id,evt){
       <div>
       <div className="User-Info">
           <h1>Edit User Info🙋🏻</h1>
-          <h2>{this.props.currentUser.name}</h2>
-          <h2>{this.props.currentUser.email}</h2>
+          <p>Name: {this.props.currentUser.name}</p>
+          <br/>
+          <p>Email: {this.props.currentUser.email}</p>
           <h2>{this.props.currentUser.password}</h2>
           {console.log(this.props.currentUser)}
       </div>
           <form onSubmit={this.handleEditSubmit.bind(this, this.props.currentUser._id)}>
-            <input ref='name' type="text" defaultValue={this.props.currentUser.name} />
-            <input ref='email' type="text" defaultValue={this.props.currentUser.email} />
+            Update name: <input ref='name' type="text" defaultValue={this.props.currentUser.name} />
+            <br />
+            Update email: <input ref='email' type="text" defaultValue={this.props.currentUser.email} />
             <button>Update</button>
         </form>
         <div className="OrderHistory">
             <h1>Order History🙋🏻</h1>
+            {this.state.orders.map((o) => (
+              <ul id='order' key={o._id}>
+                createdAt: {o.createdAt}
+                quantity :   {o.products.length}
+                {o.products.map((p)=>
+                (
+                  <li>
+                    <p>name: {p.name} </p>
+                    <p>price: ${p.price}</p>
+                  </li>
+                ))}
+              </ul>
+
+              ))
+            }
         </div>
       </div>
       )

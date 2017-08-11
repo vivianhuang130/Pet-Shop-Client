@@ -80,9 +80,19 @@ editUser(accountEdit,id) {
       //   // }
       // })
     }
+  getOrders() {
+      return this.request({method: 'GET', url: '/orders'})
+        // .then(response => {
+        //   // if(response) {
+        //   console.log(response)
+        //     response.data
+        //   // }
+        // })
+      }
+
 
   sendOrder(cart) {
-    return this.request({method: 'POST', url: '/orders', data: {cart: cart}})
+    return this.request({method: 'POST', url: '/orders', data: cart})
       .then(response => console.log(response))
   }
 

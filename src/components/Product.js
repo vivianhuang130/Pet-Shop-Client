@@ -26,7 +26,8 @@ render(){
       <h1>Products viVIAN</h1>
         <div id="cart">
           {this.props.cart.map((product, index) => (
-            <ProductDetails key={index} inCart={true} product={product} />
+            // <ProductDetails key={index} inCart={true} product={product} />
+            <li>{product.name} : ${product.price} </li>
           ))}
           <div>Total: ${this.props.cart[0] ? this.props.cart.map((item)=> {return item.price}).reduce(function(sum, value){return sum + value}) : 0}</div>
 {/*new  */}
@@ -61,7 +62,7 @@ class ProductDetails extends React.Component {
         <div id="img">
         <img className='listPic' src={this.props.product.logoUrl} height="10%" width ="10%" />
       </div>
-      <p>{this.props.product.name},  ${this.props.product.price}</p>
+      <p>{this.props.product.name},  ${this.props.product.price} </p>
       {this.props.inCart ? null : <button onClick={this.handleClick.bind(this)}>Add</button>
 }
 
