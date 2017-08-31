@@ -26,6 +26,7 @@ Terminal-
 - Add a delete button for each item in the shop.
 - Make the styling more organized.
 
+
 ##The following programming languages were used:
 
 HTML, CSS, JavaScript, React, Node.js, Mongoose, Express, Milligram

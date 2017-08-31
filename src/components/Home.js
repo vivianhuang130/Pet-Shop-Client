@@ -1,6 +1,7 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 import axios from 'axios'
+import { Container, Row, Col } from 'reactstrap';
 
 class Home  extends React.Component{
   constructor(props){

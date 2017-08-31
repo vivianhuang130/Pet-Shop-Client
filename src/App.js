@@ -3,6 +3,8 @@ import './App.css';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import auth from './auth'
 import logo from './logo.svg';
+import { Container, Row, Col } from 'reactstrap';
+
 
 import NavBar from './components/NavBar'
 import Home from './components/Home'

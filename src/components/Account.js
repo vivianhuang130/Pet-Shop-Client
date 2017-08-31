@@ -71,18 +71,18 @@ handleDeleteSubmit(id, evt){
         </form>
         <button onClick ={this.handleDeleteSubmit.bind(this, this.props.currentUser._id)}>Delete Account</button>
         <div className="OrderHistory">
-            <h1>Order History🙋🏻</h1>
+          <h1>Order History🙋🏻</h1>
             {this.state.orders.map((o) => (
               <ul id='order' key={o._id}>
                 Created At: {o.createdAt} <br/>
                 Quantity:   {o.products.length}
-                {o.products.map((p)=>
-                (
-                  <li>
-                    <p>Name: {p.name} </p> <br/>
-                    <p>Price: ${p.price}</p>
-                  </li>
-                ))}
+                  {o.products.map((p)=>
+                    (
+                      <li>
+                        <p>Name: {p.name} </p> <br/>
+                        <p>Price: ${p.price}</p>
+                      </li>
+                    ))}
               </ul>
 
               ))
