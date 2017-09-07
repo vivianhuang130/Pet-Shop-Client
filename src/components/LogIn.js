@@ -29,11 +29,11 @@ class LogIn extends React.Component {
       this.state.shouldRedirect
       ? <Redirect to='/product' />
       : (
-        <div className="LogIn">
+        <div className="login">
           <h1>Log In</h1>
           <form onSubmit={this.handleFormSubmit.bind(this)}>
-            <input ref="email" type="text" placeholder="Email" />
-            <input ref="password" type="password" placeholder="Password" />
+            <input className="form" ref="email" type="text" placeholder="Email" />
+            <input className="form" ref="password" type="password" placeholder="Password" />
             <button>Log In</button>
           </form>
         </div>

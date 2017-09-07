@@ -1,10 +1,9 @@
+
 import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import auth from './auth'
-import logo from './logo.svg';
-import { Container, Row, Col } from 'reactstrap';
-
+import { Container, Row, Col } from 'reactstrap'
 
 import NavBar from './components/NavBar'
 import Home from './components/Home'
@@ -14,11 +13,7 @@ import LogIn from './components/LogIn'
 import LogOut from './components/LogOut'
 import Product from './components/Product'
 
-
 class App extends Component {
-
-
-
   state = {
     cart : JSON.parse(localStorage.getItem("cart"))||[],
     itemsOnCart : false,
@@ -78,7 +73,7 @@ class App extends Component {
     return (
       <Router>
 
-        <div className="App">
+        <div id="name">
           {currentUser
             ? <p>Hello, {currentUser.name}</p>
             : null

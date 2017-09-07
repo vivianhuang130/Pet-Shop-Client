@@ -23,27 +23,25 @@ class Product extends React.Component {
 
 render(){
   return(
-
-
     <div className="container">
-      <h1 className="name">The Pet Shop</h1>
-      <h2>Available Hairstyles </h2>
+      <h2 className="available-hairstyles">Available Hairstyles</h2>
 
         <div id="cart">
+          <h3>Cart</h3>
           {this.props.cart.map((product, index) => (
             // <ProductDetails key={index} inCart={true} product={product} />
-            <li>{product.name} : ${product.price} </li>
+            <li key={index._id}> {product.name} : ${product.price} </li>
           ))}
           <div>Total: ${this.props.cart[0] ? this.props.cart.map((item)=> {return item.price}).reduce(function(sum, value){return sum + value}) : 0}</div>
           <div><button onClick={this.props.placeOrder}> Checkout</button></div>
         </div>
-
+        <div className="pds">
           {this.state.products.map((p) => (
-            <li id='products' key={p._id}>
+            // <li id='products' key={p._id}>
                 <ProductDetails addProduct={this.props.addProduct} product={p} />
-            </li>
+            // </li>
             ))}
-
+          </div>
         </div>
 
     )
@@ -63,20 +61,20 @@ class ProductDetails extends React.Component {
   // }
   render(){
     return (
-      <Container id="container">
-        <Row id="row">
-          <Col sm={{ size: 'auto', offset: 1 }}>
-            <div>
-              <img className='listPic' src={this.props.product.logoUrl} height="40%" width ="40%" />
-              <div id="name-price">
-                <p>{this.props.product.name} </p>
-                <p>${this.props.product.price} </p>
-                {this.props.inCart ? null : <button onClick={this.handleClick.bind(this)}>Add</button>}
-              </div>
+      <div className="col-md-3">
+        {/* <div className="layout"> */}
+          <div>
+            <img className='listPic' src={this.props.product.logoUrl} />
+            <div id="name-price">
+              <div id="product-name">{this.props.product.name} </div>
+              <br/>
+              <div id="product-price">${this.props.product.price} </div>
+              <br/>
+              {this.props.inCart ? null : <button id="button" onClick={this.handleClick.bind(this)}>Add</button>}
             </div>
-          </Col>
-        </Row>
-    </Container>
+          </div>
+        {/* </div> */}
+      </div>
     )}
   }
 

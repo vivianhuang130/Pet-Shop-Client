@@ -14,20 +14,6 @@ componentDidMount(){
       console.log(orders)
       this.setState({orders: orders.data})
     })
-  // this.request({method: 'GET', url: '/products'})
-  // .then((prod)=>{
-  //   console.log("?");
-  //
-  //   console.log(prod.data);
-  //   this.setState({products: prod.data})
-  //   console.log(this.state);
-  // })
-
-
-  // auth.getUserOrders().then(response => {
-  // // console.log(response)
-  // // set the state to contain the orders you get back from server.
-  // })
 }
 
 handleEditSubmit(id,evt){
@@ -55,39 +41,48 @@ handleDeleteSubmit(id, evt){
   render(){
     return (
       <div>
-      <div className="User-Info">
+      <div className="user-info">
           <h1>Edit User Info🙋🏻</h1>
           <p>Name: {this.props.currentUser.name}</p>
           <br/>
           <p>Email: {this.props.currentUser.email}</p>
           <h2>{this.props.currentUser.password}</h2>
           {console.log(this.props.currentUser)}
+
       </div>
-          <form onSubmit={this.handleEditSubmit.bind(this, this.props.currentUser._id)}>
+      <div className="update">
+        <form onSubmit={this.handleEditSubmit.bind(this, this.props.currentUser._id)}>
             Update name: <input className="form" ref='name' type="text" defaultValue={this.props.currentUser.name} />
             <br />
             Update email: <input className="form" ref='email' type="text" defaultValue={this.props.currentUser.email} />
-            <button>Update</button>
+          <div>
+            <button className="update-delete-account-button">Update Account</button>
+            <button className="update-delete-account-button" onClick ={this.handleDeleteSubmit.bind(this, this.props.currentUser._id)}>Delete Account</button>
+          </div>
         </form>
-        <button onClick ={this.handleDeleteSubmit.bind(this, this.props.currentUser._id)}>Delete Account</button>
-        <div className="OrderHistory">
-          <h1>Order History🙋🏻</h1>
-            {this.state.orders.map((o) => (
-              <ul id='order' key={o._id}>
-                Created At: {o.createdAt} <br/>
-                Quantity:   {o.products.length}
-                  {o.products.map((p)=>
+      </div>
+        <div className="order-history">
+          <h1>Order History</h1>
+            {this.state.orders.reverse().map((o) => (
+              <div id='order' key={o._id}>
+                Created At: {o.createdAt}
+                <br/>
+                Quantity: {o.products.length}
+                  {o.products.map((p, i)=>
                     (
-                      <li>
-                        <p>Name: {p.name} </p> <br/>
+                      <li key={i._id}>
+                        <p>Name: { p.name } </p> <br/>
                         <p>Price: ${p.price}</p>
+
                       </li>
                     ))}
-              </ul>
+              </div>
 
               ))
             }
+
         </div>
+
       </div>
       )
   }

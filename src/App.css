@@ -1,8 +1,105 @@
-.App {
-  text-align: center;
+
+.pds{
+  max-width: 816px;
+  padding-top: 39px;
+}
+.homepage{
+  margin-left: 42px;
+  font-style: italic;
+}
+.bath-groom{
+  text-align: left;
+  margin-left: 1px;
 
 }
+.bath-groom2{
+  text-align: left;
+  margin-left: 1px;
+  margin-top: -10px;
+}
 
+.spacing{
+  margin-left: 10px;
+}
+/*.Home{
+  margin-left: 220px;
+}*/
+hr {
+  margin-top: 4px;
+  margin-bottom: 1rem;
+  margin-left: 42px;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+.available-hairstyles{
+  text-align: center;
+  font-family: ‘American Typewriter’;
+}
+#name-price{
+  margin-bottom: 70px;
+  margin-top: -11px;
+}
+#button{
+  margin: 8px;
+  margin-top: -2px;
+  margin-right: 42px;
+  background-color: mediumpurple;
+
+}
+.update-delete-account-button{
+  margin: 8px;
+  margin-top: -2px;
+}
+#product-name{
+  font-family: monospace;
+  font-size: 16px;
+  text-align: center;
+}
+#product-price{
+  margin-top: -27px;
+  margin-bottom: -24px;
+  font-family: monospace;
+  font-size: 20px;
+  font-size: 20px;
+    text-align: center;
+}
+#hr1 {
+  margin-top: -55px;
+  margin-bottom: 1rem;
+  margin-left: 42px;
+  padding-bottom: 15px;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+#half-pic{
+  width: 211px;
+  margin: auto;
+  margin-top: -32px;
+  margin-bottom: -4px;
+}
+#website-name{
+  text-align: center;
+  font-size: 85px;
+  font-family: ‘American Typewriter’;
+}
+#logout{
+  padding-left: 60px;
+  text-align: center;
+}
+.login{
+  text-align: center;
+}
+.signup{
+  text-align: center;
+}
+.title{
+  text-align: center;
+}
+#name{
+  margin-right: 40px;
+  font-size: 14px;
+  text-align: right;
+}
 /*.App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
@@ -23,54 +120,86 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
-.form {
-  width: 50%;
+.user-info{
+  text-align: center;
 }
+.update{
+  text-align: center;
 
+}
+.form {
+  text-align: center;
+  margin-left: 17px;
+  width: 40px
+}
+.order-history{
+  text-align: center;
+}
+#order{
+  list-style-type: none;
+}
 input{
   width: 50%;
 }
 
 .NavBar {
-  list-style-type: none;
   margin: 10px;
-  padding: 14px;
-  overflow: hidden;
-  background-color: #999999;
+  padding: 23px;
+  margin-top: -30px;
+  text-align: center;
+
 
 }
 .NavBar li {
-   float: left;
+  float: left;
+
 }
 #products{
   list-style-type: none;
    display:inline;
 }
 .listPic {
-  width: 100%;
-  height: 100%;
+  max-width: 100%;
+  height: 152px;
+  width: 170px;
+  display: inline-block;
   margin-bottom: 12px;
 }
-#name-price{
-  margin-bottom: 40px;
-}
+
 #container{
   width: 32%;
   display: inline-block;
+
 }
 p {
   display: inline;
 }
 #cart{
-  border: 4px solid purple;
+  /*border: 4px solid purple; */
   width: 240px;
-  height: 340px;
-  margin-left: 760px;
+  height: 140px;
+  margin-left: 771px;
+  margin-top: -63px;
+  margin-bottom: 28px;
+  position: absolute;
 }
-
+#cart-items{
+  text-align: left;
+}
+#checkout{
+  text-align: center;
+}
+#total{
+  text-align: right;
+  margin-bottom: 24px;
+}
 #row{
   display: inline-block;
   float: left
+}
+.layout{
+  text-align: center;
+  margin-top: -58px;
 }
 .name{
   font-size: 120px;

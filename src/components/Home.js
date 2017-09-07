@@ -1,7 +1,7 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 import axios from 'axios'
-import { Container, Row, Col } from 'reactstrap';
+
 
 class Home  extends React.Component{
   constructor(props){
@@ -24,30 +24,27 @@ componentDidMount(){
 
   render(){
     return (
-
-      <div className="container text-center">
-        <h1>Products viVIAN</h1>
-        <div className="row">
-          <div className="col-sm-3">
-            {this.state.products.map((p) => (
-              <li id='products' key={p._id}>
-
-
-
-                <img src={p.logoUrl} height="10%" width ="10%" />
-
-                {/* <button onclick="activateLasers()"></button> */}
-
-                <p>{p.name}</p>
-                <p>${p.price}</p>
-                {/* <p>{p.description}</p> */}
-
-
-              </li>
-            ))}
-          </div>
-          </div>
-          </div>
+  // <h1>The Pet Shop</h1>
+  <div className="homepage">
+  <p>We never met your dog, but we know we love them.</p>
+  <img src={'http://www.dogtiredsc.com/wp-content/uploads/2015/05/dog-grooming-e1478283119973.jpg'} margin-left= "42px" />
+  <hr className="bath-groom"/>
+  <div className="bath-groom">
+    <h3>Hello dog lovers, let's get started by choosing a customized blowout!</h3>
+    <p>Every purchased blowout comes with a complimentary spa service</p>
+  <br />
+  <p>Each spa includes:</p>
+</div>
+  <ul className="bath-groom2">
+    ​<li>Organic Coconut Shampoo</li>
+    <li>Blow Dry</li>
+    <li>Brush Out</li>
+    <li>Nails Trimmed</li>
+    <li>Ears Cleaned</li>
+    <li>Sanitary Trim (if requested)</li>
+    <li>Ribbon or Bow</li>
+</ul>
+</div>
 
     )
   }

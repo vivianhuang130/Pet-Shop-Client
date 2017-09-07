@@ -27,12 +27,12 @@ handleFormSubmit(evt){
       this.state.shouldRedirect
       ? <Redirect to='/login' />
       : (
-        <div className="SignUp">
+        <div className="signup">
           <h1>Create An Account</h1>
           <form onSubmit={this.handleFormSubmit.bind(this)}>
-            <input ref='name' type="text" placeholder="Name" />
-            <input ref='email' type="text" placeholder="Email" />
-            <input ref='password' type="password" placeholder="Password" />
+            <input ref='name' className="form" type="text" placeholder="Name" />
+            <input ref='email' className="form" type="text" placeholder="Email" />
+            <input ref='password' className="form" type="password" placeholder="Password" />
             <button>Create Account</button>
         </form>
       </div>
