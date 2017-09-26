@@ -12,6 +12,7 @@ import SignUp from './components/SignUp'
 import LogIn from './components/LogIn'
 import LogOut from './components/LogOut'
 import Product from './components/Product'
+import Images from './components/Images'
 
 class App extends Component {
   state = {
@@ -107,6 +108,7 @@ class App extends Component {
           <Route path='/logout' render={() => (
             <LogOut onLogOut={this.logOut.bind(this)} />
           )} />
+          <Route path='/images' component={Images} />
         </div>
       </Router>
     );
