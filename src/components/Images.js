@@ -75,9 +75,9 @@ class Images extends Component {
   render(){
     let list = this.state.images.map((image, index) => {
       return (
-        <li key={index}>
-          <img src={image.secure_url}/>
-        </li>
+        <ol key={index}>
+          <img style={{width:72}} src={image.secure_url}/>
+        </ol>
       )
     })
     return (
