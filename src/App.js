@@ -18,7 +18,9 @@ class App extends Component {
   state = {
     cart : JSON.parse(localStorage.getItem("cart"))||[],
     itemsOnCart : false,
-    currentUser: auth.getCurrentUser()
+    currentUser: auth.getCurrentUser(),
+    images: []
+    // depending on current user Images will change
   }
 
   setCurrentUser() {
@@ -83,8 +85,11 @@ class App extends Component {
           <Route exact path='/' component={Home} />
 
           <Route path='/product' render={() => (
-            <Product addProduct={this.handleAdd.bind(this)}
-              cart={this.state.cart} placeOrder={this.placeOrder.bind(this)}
+            <Product
+              images={this.state.images}
+              addProduct={this.handleAdd.bind(this)}
+              cart={this.state.cart}
+              placeOrder={this.placeOrder.bind(this)}
             />
 
   ///new

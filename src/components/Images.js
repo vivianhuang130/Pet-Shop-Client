@@ -19,14 +19,14 @@ class Images extends Component {
     const image = files[0]
     // Consume of the Cloudinary API.
     // Find cloud Name in your settings
-    const cloudName = 'yanny-cloud'
+    const cloudName = 'the-pet-shop'
     // Target of your upload will go here. (video, media, images)
-    const url = 'https://api.cloudinary.com/v1_1/yanny-cloud/image/upload'
+    const url = 'https://api.cloudinary.com/v1_1/'+cloudName+'/image/upload'
     // Cloudinary requires a timestamp in seconds.
     const timestamp = Date.now()/1000
     // Enable --> unsigned uploading. (It goes directly to cloudinary and not to your server for preprocessor)
-    const uploadPreset = 'com8poox'
-    const apiSecret = 'vDCEYK5NOsJO1eWXZDZ2VyGwtBI'
+    const uploadPreset = 'nxtejnl2'
+    const apiSecret = 'f89zl07HivwBs6x386vMWZ-hVBI'
     // Just URL params (key, value pairs params)
     const paramsStr = 'timestamp='+timestamp+'&upload_preset='+uploadPreset+apiSecret
     // Cloudinary requires a specific algorithm encryption sha1()
@@ -36,7 +36,7 @@ class Images extends Component {
     // Prepare a JSON object to make the call to the api.
 
     const params = {
-      'api_key':'359385687257173',
+      'api_key':'256249741617242',
       'timestamp':timestamp,
       'upload_preset':uploadPreset,
       'signature':signature
