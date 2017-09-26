@@ -5,6 +5,13 @@ import Superagent from 'superagent'
 
 class Images extends Component {
 
+  constructor(){
+    super()
+    this.state = {
+      images: []
+    }
+  }
+
   // Takes a set of files. It executes everytime you upload image
   uploadFile(files){
     console.log("uploadFile: ")
@@ -49,15 +56,37 @@ class Images extends Component {
         alert(err)
         return
       }
+
       console.log("UPLOAD COMPLETE: "+JSON.stringify(response.body));
+
+      let uploaded = response.body
+      // Never mutate state. Make a copy of the object.
+      let updatedImages = Object.assign([],this.state.images)
+      // push to that object. (In this case an Array)
+      updatedImages.push(uploaded)
+
+      // It will trigger the re-render (refresh component)
+      this.setState({
+        images: updatedImages
+      })
     })
   }
 
   render(){
+    let list = this.state.images.map((image, index) => {
+      return (
+        <li key={index}>
+          <img src={image.secure_url}/>
+        </li>
+      )
+    })
     return (
       <div>
         Images Component
         <Dropzone onDrop={this.uploadFile.bind(this)}/>
+        {
+          list
+        }
       </div>
     )
   }
