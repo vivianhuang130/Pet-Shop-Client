@@ -16,11 +16,34 @@ import Images from './components/Images'
 
 class App extends Component {
   state = {
-    cart : JSON.parse(localStorage.getItem("cart"))||[],
+    cart : JSON.parse(localStorage.getItem("cart")) || [],
     itemsOnCart : false,
     currentUser: auth.getCurrentUser(),
     images: []
-    // depending on current user Images will change
+  }
+
+  removeImageAt(event){
+    event.preventDefault()
+    console.log('removeImage: '+event.target.id);
+    // this.setState({
+    //   images: this.state.images.splice(event.target.id, 1)
+    // })
+  }
+
+  addImage(image){
+    console.log('addImage: '+image.secure_url);
+    let updatedImages = Object.assign([],this.state.images)
+    updatedImages.push(image)
+    auth.sendImage(image)
+    this.setState({
+      images: updatedImages
+    })
+  }
+
+  getAllImages(){
+    this.setState({
+      images: auth.getAllImages
+    })
   }
 
   setCurrentUser() {
@@ -113,7 +136,13 @@ class App extends Component {
           <Route path='/logout' render={() => (
             <LogOut onLogOut={this.logOut.bind(this)} />
           )} />
-          <Route path='/images' component={Images} />
+          <Route path='/images' render={() => (
+            <Images
+              handleRemoveImage={this.removeImageAt.bind(this)}
+              handleAddImage={this.addImage.bind(this)}
+            />
+          )}
+             />
         </div>
       </Router>
     );

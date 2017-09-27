@@ -4,8 +4,8 @@ import jwtDecode from 'jwt-decode'
 class AuthClient {
   constructor() {
     this.request = axios.create({
-      // baseURL: 'http://localhost:3001/api',
-      baseURL:'https://evening-springs-26292.herokuapp.com/api',
+      baseURL: 'http://localhost:3001/api',
+      // baseURL:'https://evening-springs-26292.herokuapp.com/api',
       headers: {
       // post:{
       //   token: //only for post token
@@ -17,19 +17,19 @@ class AuthClient {
     })//this until here represents defaults
   }
 
-editUser(accountEdit,id) {
-  console.log(id);
-  return this.request({method: 'PATCH', url: `/users/${id}`, data: accountEdit})
-  .then(response => {
-    if(response.data.success) { //if successfully logged in
-      const token = response.data.token //if success is true we can assume token is in there
-      this.setToken(token)
-      return jwtDecode(token) //token for name,id,email of the user
-    } else {
-      return false
-    }
-  })
-}
+  editUser(accountEdit,id) {
+    console.log(id);
+    return this.request({method: 'PATCH', url: `/users/${id}`, data: accountEdit})
+    .then(response => {
+      if(response.data.success) { //if successfully logged in
+        const token = response.data.token //if success is true we can assume token is in there
+        this.setToken(token)
+        return jwtDecode(token) //token for name,id,email of the user
+      } else {
+        return false
+      }
+    })
+  }
   signUp(userInfo) {
     return this.request({method: 'POST', url: '/users', data: userInfo})
       .then((response) => response.data.success)
@@ -97,13 +97,20 @@ editUser(accountEdit,id) {
         //   // }
         // })
       }
-
-
   sendOrder(cart) {
     return this.request({method: 'POST', url: '/orders', data: cart})
       .then(response => console.log(response))
   }
-
+  // Sends image urls to store as strings on the database
+  sendImage(image){
+    return this.request({method: 'POST', url:'/image', data:image.secure_url})
+      .then(response => console.log(response))
+  }
+  // Get all save urls
+  getAllImages(){
+    return this.request({method: 'GET', url:'/images'})
+      .then(response => console.log(response))
+  }
   // function that sends request to retrieve orders from '/orders'
   // getUserOrders()
 
