@@ -7,20 +7,20 @@ class Home  extends React.Component{
   constructor(props){
     super(props)
     this.state = {products: []}
-    this.request = axios.create({baseURL: 'https://evening-springs-26292.herokuapp.com/api'})//this until here represents defaults
-//'https://evening-springs-26292.herokuapp.com/api''http://localhost:3001/api'
+    this.request = axios.create({baseURL: 'http://localhost:3001/api'})//this until here represents defaults
+    //'https://evening-springs-26292.herokuapp.com/api'
   }
 
-componentDidMount(){
-  this.request({method: 'GET', url: '/products'})
-  .then((prod)=>{
-    console.log("?");
+  componentDidMount(){
+    this.request({method: 'GET', url: '/products'})
+    .then((prod)=>{
+      console.log("?");
 
-    console.log(prod.data);
-    this.setState({products: prod.data})
-    console.log(this.state);
-  })
-}
+      console.log(prod.data);
+      this.setState({products: prod.data})
+      console.log(this.state);
+    })
+  }
 
   render(){
     return (
@@ -45,7 +45,6 @@ componentDidMount(){
           <li>Ribbon or Bow</li>
         </ul>
       </div>
-
     )
   }
 }

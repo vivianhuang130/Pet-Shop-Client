@@ -64,7 +64,7 @@ class Images extends Component {
       // Sends image to the parent app
       this.props.handleAddImage(response.body)
       // Never mutate state. Make a copy of the object.
-      let updatedImages = Object.assign([],this.state.images)
+      let updatedImages = Object.assign([],this.state.imgs)
       // push to that object. (In this case an Array)
       updatedImages.push(uploaded)
 

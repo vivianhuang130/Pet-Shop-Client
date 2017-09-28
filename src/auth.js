@@ -62,7 +62,6 @@ class AuthClient {
     // retrieve token from local storage:
     return localStorage.getItem('token')
   }
-
   setToken(token) {
     // save token to localStorage:
     localStorage.setItem('token', token)
@@ -70,7 +69,6 @@ class AuthClient {
     this.request.defaults.headers.common.token = token  //setting a property of an object
     return token
   }
-
   clearToken() {
     // remove token from localStorage:
     localStorage.removeItem('token')
@@ -81,12 +79,10 @@ class AuthClient {
 
   getProducts() {
     return this.request({method: 'GET', url: '/products'})
-      // .then(response => {
-      //   // if(response) {
-      //   console.log(response)
-      //     response.data
-      //   // }
-      // })
+      .then(response => {
+        console.log(response)
+        return response.data
+      })
     }
   getOrders() {
       return this.request({method: 'GET', url: '/orders'})
@@ -101,14 +97,14 @@ class AuthClient {
     return this.request({method: 'POST', url: '/orders', data: cart})
       .then(response => console.log(response))
   }
-  // Sends image urls to store as strings on the database
-  sendImage(image){
-    return this.request({method: 'POST', url:'/image', data:image.secure_url})
+  // Sends image url to store as strings on the database
+  sendImage(image, id) {
+    return this.request({method: 'POST', url:`/products/${id}/image`, data:image.secure_url})
       .then(response => console.log(response))
   }
   // Get all save urls
-  getAllImages(){
-    return this.request({method: 'GET', url:'/images'})
+  getAllImages() {
+    return this.request({ method: 'GET', url:'/products/images' })
       .then(response => console.log(response))
   }
   // function that sends request to retrieve orders from '/orders'

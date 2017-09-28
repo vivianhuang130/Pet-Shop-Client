@@ -15,7 +15,7 @@ return(
   </div>
   <div className="NavBar">
     <p className="Home spacing"><NavLink exact to='/'>Home</NavLink></p>
-    <p className="Product spacing"><NavLink to='/product'>Product</NavLink></p>
+    <p className="Product spacing"><NavLink to='/products'>Products</NavLink></p>
     <p className="Account spacing"><NavLink to='/account'>My Account</NavLink></p>
     <p className="spacing"><NavLink to='/images'>Images upload</NavLink></p>
     {props.currentUser

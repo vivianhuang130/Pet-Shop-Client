@@ -12,28 +12,38 @@ import SignUp from './components/SignUp'
 import LogIn from './components/LogIn'
 import LogOut from './components/LogOut'
 import Product from './components/Product'
+import ListProducts from './components/ListProducts'
 import Images from './components/Images'
 
 class App extends Component {
   state = {
     cart : JSON.parse(localStorage.getItem("cart")) || [],
+    myCart:[],
     itemsOnCart : false,
     currentUser: auth.getCurrentUser(),
     images: []
   }
 
+  addProductCart(product){
+    console.log("Product added to Cart: ");
+    console.log(product);
+  }
+
   removeImageAt(event){
     event.preventDefault()
     console.log('removeImage: '+event.target.id);
-    // this.setState({
-    //   images: this.state.images.splice(event.target.id, 1)
-    // })
+    let updatedImages = Object.assign([], this.state.images)
+    updatedImages.splice(event.target.id, 1)
+    this.setState({
+      images: updatedImages
+    })
   }
 
   addImage(image){
     console.log('addImage: '+image.secure_url);
     let updatedImages = Object.assign([],this.state.images)
     updatedImages.push(image)
+    // Callback when image's reference is save then re render on the page.
     auth.sendImage(image)
     this.setState({
       images: updatedImages
@@ -76,29 +86,15 @@ class App extends Component {
         p
       ],
       itemsOnCart: true
-  }, ()=>{localStorage.setItem("cart", JSON.stringify(this.state.cart))})
+    }, () => { localStorage.setItem("cart", JSON.stringify(this.state.cart)) })
 
     console.log(p);
   }
-
-    ///new
-  // handleClear(p){
-  //   this.setState({
-  //     cart: [
-  //       ...this.state.cart,
-  //       p
-  //     ],
-  //     itemsOnCart: true
-  // }, ()=>{localStorage.removeItem("cart", JSON.stringify(this.state.cart))})
-  //
-  //   console.log(p);
-  // }
 
   render() {
     const currentUser = this.state.currentUser
     return (
       <Router>
-
         <div id="name">
           {currentUser
             ? <p>Hello, {currentUser.name}</p>
@@ -107,15 +103,15 @@ class App extends Component {
           <NavBar currentUser={this.state.currentUser} />
           <Route exact path='/' component={Home} />
 
-          <Route path='/product' render={() => (
-            <Product
-              images={this.state.images}
+          <Route path='/products' render={() => (
+            <ListProducts
               addProduct={this.handleAdd.bind(this)}
               cart={this.state.cart}
               placeOrder={this.placeOrder.bind(this)}
+              addProductCart={() => this.addProductCart.bind(this)}
             />
 
-  ///new
+            // new
             // <Product clearProduct={this.handleClearClick.bind(this)}
             //   cart={this.state.cart}
             // />
@@ -139,10 +135,8 @@ class App extends Component {
           <Route path='/images' render={() => (
             <Images
               handleRemoveImage={this.removeImageAt.bind(this)}
-              handleAddImage={this.addImage.bind(this)}
-            />
-          )}
-             />
+              handleAddImage={this.addImage.bind(this)} />
+          )}/>
         </div>
       </Router>
     );
