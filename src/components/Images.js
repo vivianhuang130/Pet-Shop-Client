@@ -79,8 +79,8 @@ class Images extends Component {
     let list = this.state.imgs.map((image, index) => {
       return (
         <ol key={index}>
-          <img style={{width:72}} src={image.secure_url}/>
-          <a id={index} onClick={this.props.handleRemoveImage} href="#">remove</a>
+          <img style={{width:72}} src={image.secure_url} alt="Product"/>
+          <a id={index} onClick={this.props.handleRemoveImage}>remove</a>
         </ol>
       )
     })

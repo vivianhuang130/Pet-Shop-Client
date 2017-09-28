@@ -8,7 +8,7 @@ return(
     The Pet Shop
   </div>
   <div id="half-pic">
-    <img src={'http://sityourpets.com/wp-content/uploads/job-manager-uploads/candidate_photo/2015/05/Funny-Animals-4-1.jpg'}/>
+    <img src={'http://sityourpets.com/wp-content/uploads/job-manager-uploads/candidate_photo/2015/05/Funny-Animals-4-1.jpg'} alt="Welcome Pet Shop"/>
   </div>
   <div>
   <hr />

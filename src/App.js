@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import auth from './auth'
-import { Container, Row, Col } from 'reactstrap'
+// import { Container, Row, Col } from 'reactstrap'
 
 import NavBar from './components/NavBar'
 import Home from './components/Home'
@@ -11,7 +11,6 @@ import Account from './components/Account'
 import SignUp from './components/SignUp'
 import LogIn from './components/LogIn'
 import LogOut from './components/LogOut'
-import Product from './components/Product'
 import ListProducts from './components/ListProducts'
 import Images from './components/Images'
 

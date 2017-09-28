@@ -1,5 +1,5 @@
 import React from 'react'
-import {NavLink} from 'react-router-dom'
+// import {NavLink} from 'react-router-dom'
 import auth from '../auth'
 
 class Account extends React.Component{
@@ -42,7 +42,7 @@ handleDeleteSubmit(id, evt){
     return (
       <div>
       <div className="user-info">
-          <h1>Edit User Info🙋🏻</h1>
+          <h1>Edit User Info <span role='img' aria-label="Emoji blond">🙋</span></h1>
           <p>Name: {this.props.currentUser.name}</p>
           <br/>
           <p>Email: {this.props.currentUser.email}</p>
