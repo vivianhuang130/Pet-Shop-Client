@@ -79,11 +79,8 @@ class AuthClient {
 
   getProducts() {
     return this.request({method: 'GET', url: '/products'})
-      .then(response => {
-        console.log(response)
-        return response.data
-      })
-    }
+  }
+  
   getOrders() {
       return this.request({method: 'GET', url: '/orders'})
         // .then(response => {

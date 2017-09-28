@@ -6,35 +6,43 @@ class ListProducts extends Component {
   constructor(props){
     super(props)
     this.state = {
-      products: []
+      products: [{}]
     }
   }
   // gets all products when component mount and after renders component
   componentDidMount() {
-    auth.getProducts().then((product) => {
+    auth.getProducts().then((response) => {
+      let allProducts = response.data
       console.log("------ Brings all products -------");
-      console.log(product.data);
+      console.log(allProducts);
       console.log("------ Brings all products -------");
-      this.setState({products: this.state.products.push(product.data)})
+      this.setState({
+        products: allProducts
+      })
     })
   }
 
   render(){
-    let myProducts = () => this.state.products.map((product) => {
+    var myProducts = this.state.products.map((product,i) => {
       return (
-        <Product
-          name={product.name}
-          description={product.description}
-          price={product.price}
-          handleAddCart={() => this.props.addProductCart(product)}
-        />
+        <div key={i} className="col-xs-6">
+          <Product
+            name={product.name}
+            description={product.description}
+            price={product.price}
+            handleAddCart={() => this.props.addProductCart(product)}
+          />
+        </div>
       )
     })
     return (
       <div>
-        {
-          myProducts
-        }
+        <h2 className="available-hairstyles">Available Hairstyles</h2>
+        <div  className="row">
+          {
+            myProducts
+          }
+        </div>
       </div>
     )
   }

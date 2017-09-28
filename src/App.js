@@ -75,6 +75,7 @@ class App extends Component {
     auth.clearToken()
     this.setState({currentUser: null})
   }
+  
   handleAdd(p){
     // before setting the state
     // send a patch request to '/users/:id/cart/:productId'

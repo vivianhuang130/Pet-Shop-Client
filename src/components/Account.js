@@ -1,8 +1,7 @@
-import React from 'react'
-// import {NavLink} from 'react-router-dom'
+import React, { Component } from 'react'
 import auth from '../auth'
 
-class Account extends React.Component{
+class Account extends Component{
   constructor(props){
     super(props)
     this.state = {products: [], orders: []}
