@@ -8,7 +8,9 @@ class Home  extends React.Component{
     super(props)
     this.state = {products: []}
     this.request = axios.create({baseURL: 'http://localhost:3001/api'})//this until here represents defaults
+
     //'https://evening-springs-26292.herokuapp.com/api'
+
   }
 
   componentDidMount(){
