@@ -8,7 +8,7 @@ class Images extends Component {
   constructor(){
     super()
     this.state = {
-      images: []
+      imgs: []
     }
   }
 
@@ -17,26 +17,26 @@ class Images extends Component {
     console.log("uploadFile: ")
     // Take the first file
     const image = files[0]
+
     // Consume of the Cloudinary API.
-    // Find cloud Name in your settings
-    const cloudName = 'the-pet-shop'
+    // Enable --> unsigned uploading. (It goes directly to cloudinary and not to your server for preprocessor)
+    const cloudName = process.env.cloudName
+    const uploadPreset = process.env.uploadPreset
+    const apiSecret = process.env.apiSecret
+    const api_key = process.env.api_key 
     // Target of your upload will go here. (video, media, images)
     const url = 'https://api.cloudinary.com/v1_1/'+cloudName+'/image/upload'
     // Cloudinary requires a timestamp in seconds.
     const timestamp = Date.now()/1000
-    // Enable --> unsigned uploading. (It goes directly to cloudinary and not to your server for preprocessor)
-    const uploadPreset = 'nxtejnl2'
-    const apiSecret = 'f89zl07HivwBs6x386vMWZ-hVBI'
+
     // Just URL params (key, value pairs params)
     const paramsStr = 'timestamp='+timestamp+'&upload_preset='+uploadPreset+apiSecret
     // Cloudinary requires a specific algorithm encryption sha1()
-    // Sha1() It is npm module to be imported
-    // Convert string to a sha1 encryption
     const signature = sha1(paramsStr)
     // Prepare a JSON object to make the call to the api.
 
     const params = {
-      'api_key':'256249741617242',
+      'api_key':api_key,
       'timestamp':timestamp,
       'upload_preset':uploadPreset,
       'signature':signature
@@ -60,23 +60,27 @@ class Images extends Component {
       console.log("UPLOAD COMPLETE: "+JSON.stringify(response.body));
 
       let uploaded = response.body
+
+      // Sends image to the parent app
+      this.props.handleAddImage(response.body)
       // Never mutate state. Make a copy of the object.
-      let updatedImages = Object.assign([],this.state.images)
+      let updatedImages = Object.assign([],this.state.imgs)
       // push to that object. (In this case an Array)
       updatedImages.push(uploaded)
 
       // It will trigger the re-render (refresh component)
       this.setState({
-        images: updatedImages
+        imgs: updatedImages
       })
     })
   }
 
   render(){
-    let list = this.state.images.map((image, index) => {
+    let list = this.state.imgs.map((image, index) => {
       return (
         <ol key={index}>
-          <img style={{width:72}} src={image.secure_url}/>
+          <img style={{width:72}} src={image.secure_url} alt="Product"/>
+          <a id={index} onClick={this.props.handleRemoveImage}>remove</a>
         </ol>
       )
     })

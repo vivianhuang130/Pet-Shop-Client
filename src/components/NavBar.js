@@ -8,14 +8,14 @@ return(
     The Pet Shop
   </div>
   <div id="half-pic">
-    <img src={'http://sityourpets.com/wp-content/uploads/job-manager-uploads/candidate_photo/2015/05/Funny-Animals-4-1.jpg'}/>
+    <img src={'http://sityourpets.com/wp-content/uploads/job-manager-uploads/candidate_photo/2015/05/Funny-Animals-4-1.jpg'} alt="Welcome Pet Shop"/>
   </div>
   <div>
   <hr />
   </div>
   <div className="NavBar">
     <p className="Home spacing"><NavLink exact to='/'>Home</NavLink></p>
-    <p className="Product spacing"><NavLink to='/product'>Product</NavLink></p>
+    <p className="Product spacing"><NavLink to='/products'>Products</NavLink></p>
     <p className="Account spacing"><NavLink to='/account'>My Account</NavLink></p>
     <p className="spacing"><NavLink to='/images'>Images upload</NavLink></p>
     {props.currentUser

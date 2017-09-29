@@ -17,19 +17,19 @@ class AuthClient {
     })//this until here represents defaults
   }
 
-editUser(accountEdit,id) {
-  console.log(id);
-  return this.request({method: 'PATCH', url: `/users/${id}`, data: accountEdit})
-  .then(response => {
-    if(response.data.success) { //if successfully logged in
-      const token = response.data.token //if success is true we can assume token is in there
-      this.setToken(token)
-      return jwtDecode(token) //token for name,id,email of the user
-    } else {
-      return false
-    }
-  })
-}
+  editUser(accountEdit,id) {
+    console.log(id);
+    return this.request({method: 'PATCH', url: `/users/${id}`, data: accountEdit})
+    .then(response => {
+      if(response.data.success) { //if successfully logged in
+        const token = response.data.token //if success is true we can assume token is in there
+        this.setToken(token)
+        return jwtDecode(token) //token for name,id,email of the user
+      } else {
+        return false
+      }
+    })
+  }
   signUp(userInfo) {
     return this.request({method: 'POST', url: '/users', data: userInfo})
       .then((response) => response.data.success)
@@ -62,7 +62,6 @@ editUser(accountEdit,id) {
     // retrieve token from local storage:
     return localStorage.getItem('token')
   }
-
   setToken(token) {
     // save token to localStorage:
     localStorage.setItem('token', token)
@@ -70,7 +69,6 @@ editUser(accountEdit,id) {
     this.request.defaults.headers.common.token = token  //setting a property of an object
     return token
   }
-
   clearToken() {
     // remove token from localStorage:
     localStorage.removeItem('token')
@@ -81,13 +79,8 @@ editUser(accountEdit,id) {
 
   getProducts() {
     return this.request({method: 'GET', url: '/products'})
-      // .then(response => {
-      //   // if(response) {
-      //   console.log(response)
-      //     response.data
-      //   // }
-      // })
-    }
+  }
+
   getOrders() {
       return this.request({method: 'GET', url: '/orders'})
         // .then(response => {
@@ -97,13 +90,21 @@ editUser(accountEdit,id) {
         //   // }
         // })
       }
-
-
+      
   sendOrder(cart) {
     return this.request({method: 'POST', url: '/orders', data: cart})
       .then(response => console.log(response))
   }
-
+  // Sends image url to store as strings on the database
+  sendImage(image, id) {
+    return this.request({method: 'POST', url:`/products/${id}/image`, data:image.secure_url})
+      .then(response => console.log(response))
+  }
+  // Get all save urls
+  getAllImages() {
+    return this.request({ method: 'GET', url:'/products/images' })
+      .then(response => console.log(response))
+  }
   // function that sends request to retrieve orders from '/orders'
   // getUserOrders()
 
