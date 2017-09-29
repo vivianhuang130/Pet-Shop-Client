@@ -27,7 +27,7 @@ class LogIn extends React.Component {
   render() {
     return (
       this.state.shouldRedirect
-      ? <Redirect to='/product' />
+      ? <Redirect to='/products' />
       : (
         <div className="login">
           <h1>Log In</h1>

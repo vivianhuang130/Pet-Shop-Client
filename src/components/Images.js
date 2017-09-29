@@ -20,10 +20,10 @@ class Images extends Component {
 
     // Consume of the Cloudinary API.
     // Enable --> unsigned uploading. (It goes directly to cloudinary and not to your server for preprocessor)
-    const cloudName = 'yanny-cloud'
-    const uploadPreset = 'com8poox'
-    const apiSecret = 'vDCEYK5NOsJO1eWXZDZ2VyGwtBI'
-    const api_key = '359385687257173'
+    const cloudName = process.env.cloudName
+    const uploadPreset = process.env.uploadPreset
+    const apiSecret = process.env.apiSecret
+    const api_key = process.env.api_key 
     // Target of your upload will go here. (video, media, images)
     const url = 'https://api.cloudinary.com/v1_1/'+cloudName+'/image/upload'
     // Cloudinary requires a timestamp in seconds.

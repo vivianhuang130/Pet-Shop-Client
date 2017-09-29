@@ -8,7 +8,7 @@ class Product extends Component {
     return(
       <div className="container">
         <div className="product-image">
-          <img src="https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=0ahUKEwjx79eyi8fWAhXJ0FQKHRK-CDsQjRwIBw&url=http%3A%2F%2Fwww.mifashionblog.com%2Fdefault&psig=AFQjCNHAv6E_kOmFoqoqe0S4uUvpZ5FKTw&ust=1506660900979970" alt="Amazing product"/>
+          <img src={this.props.image} alt="Amazing product" height="200" width="200"/>
         </div>
         <div className="details">
           <h4>Description: {this.props.description}</h4>

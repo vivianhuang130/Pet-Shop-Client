@@ -16,16 +16,57 @@ import Images from './components/Images'
 
 class App extends Component {
   state = {
-    cart : JSON.parse(localStorage.getItem("cart")) || [],
+    cart : [],
     myCart:[],
     itemsOnCart : false,
     currentUser: auth.getCurrentUser(),
     images: []
   }
 
+  toggleItemsOnCart(){
+    this.setState({
+
+    })
+  }
+
   addProductCart(product){
-    console.log("Product added to Cart: ");
-    console.log(product);
+    console.log("-------- Product added to Cart ------- ");
+    // get Item from localStorage cart
+    let myStorageCart = localStorage.getItem("cart")
+    // validate if first item
+    if (myStorageCart != null) {
+      // concatenate ';' to separate each product string from each other
+      myStorageCart += ";"
+      // Concatenate the next string product
+      myStorageCart += JSON.stringify(product)
+      // set localStorage 'cart' to the new string products
+      localStorage.setItem("cart", myStorageCart)
+      // get localStorage 'cart'
+      let localCart = localStorage.getItem("cart")
+      // split items from 'cart' by ';' (return an array of strings)
+      // Go through the array and convert each element to an object
+      // Return array of product objects
+      let cartArray = localCart.split(";").map((ele) => { return JSON.parse(ele)})
+      // Re-render <app /> component
+      this.setState({
+        cart: cartArray
+      })
+    }
+    else {
+      // set product to localStorage 'cart'
+      let firstItem = localStorage.setItem("cart", JSON.stringify(product))
+      // get string product from localStorage 'cart'
+      let myStorageCart = localStorage.getItem("cart")
+
+      let cartArray = []
+      // convert the localStorage 'cart' to an Object.
+      // push Object to array.
+      cartArray.push(JSON.parse(myStorageCart))
+      // re-renders the <App /> component with the new state
+      this.setState({
+        cart: cartArray
+      })
+    }
   }
 
   removeImageAt(event){
@@ -63,7 +104,9 @@ class App extends Component {
 
   placeOrder(){
     console.log("placing Order...");
-    const cart = JSON.parse(localStorage.getItem('cart'))
+    let localCart = localStorage.getItem('cart')
+
+    const cart = localCart.split(";").map((ele) => { return JSON.parse(ele)})
     console.log(cart)
     auth.sendOrder({cart: cart}).then(response => {
       localStorage.removeItem('cart')
@@ -75,7 +118,7 @@ class App extends Component {
     auth.clearToken()
     this.setState({currentUser: null})
   }
-  
+
   handleAdd(p){
     // before setting the state
     // send a patch request to '/users/:id/cart/:productId'
@@ -108,7 +151,8 @@ class App extends Component {
               addProduct={this.handleAdd.bind(this)}
               cart={this.state.cart}
               placeOrder={this.placeOrder.bind(this)}
-              addProductCart={() => this.addProductCart.bind(this)}
+              addProductCart={this.addProductCart.bind(this)}
+              placeOrder={this.placeOrder.bind(this)}
             />
 
             // new

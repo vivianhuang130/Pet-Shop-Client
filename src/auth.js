@@ -80,7 +80,7 @@ class AuthClient {
   getProducts() {
     return this.request({method: 'GET', url: '/products'})
   }
-  
+
   getOrders() {
       return this.request({method: 'GET', url: '/orders'})
         // .then(response => {
@@ -90,6 +90,7 @@ class AuthClient {
         //   // }
         // })
       }
+      
   sendOrder(cart) {
     return this.request({method: 'POST', url: '/orders', data: cart})
       .then(response => console.log(response))

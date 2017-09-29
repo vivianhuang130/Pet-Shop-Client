@@ -67,7 +67,7 @@ class Account extends Component{
                 <br/>
                 Quantity: {o.products.length}
                   {o.products.map((p, i)=> (
-                    <li key={i._id}>
+                    <li key={i}>
                       <p>Name: { p.name } </p> <br/>
                       <p>Price: ${p.price}</p>
                     </li>
